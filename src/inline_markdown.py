@@ -105,6 +105,19 @@ def split_nodes_link(old_nodes):
             new_nodes.append(TextNode(original_text, text_type_text))
     return new_nodes
 
+def text_to_textnodes(text):
+    # This function should be simple now that you've done all the hard work. It should just call each of your splitting functions in turn.
+    nodes = [TextNode(text, text_type_text)]
+    nodes = split_nodes_delimeter(nodes, "**", text_type_bold)
+    nodes = split_nodes_delimeter(nodes, "*", text_type_italic)
+    nodes = split_nodes_delimeter(nodes, "`", text_type_code)
+    nodes = split_nodes_image(nodes)
+    nodes = split_nodes_link(nodes)
+    return nodes
+    
+
+
+
 
 
 
