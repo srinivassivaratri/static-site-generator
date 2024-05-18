@@ -8,4 +8,13 @@ def markdown_to_blocks(markdown):
         block = block.strip()
         filtered_blocks.append(block)
     return filtered_blocks
+
+# def markdown_to_blocks(markdown):
+#     # Its job is to split the input string into distinct blocks and strip any leading or trailing whitespace from each block. It should also remove any "empty" blocks due to excessive newlines.
+#     blocks = markdown.split("\n\n")
+#     for block in blocks: 
+#         block.strip()
+#         if block == "":
+#             blocks.remove(block)
+#     return blocks
           
