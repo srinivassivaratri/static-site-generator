@@ -1,3 +1,12 @@
+block_type_paragraph = "paragraph"
+block_type_heading = "heading"
+block_type_code = "code"
+block_type_quote = "quote"
+block_type_unordered_list = "unordered_list"
+block_type_ordered_list = "ordered_list"
+
+
+
 def markdown_to_blocks(markdown):
     # Its job is to split the input string into distinct blocks and strip any leading or trailing whitespace from each block. It should also remove any "empty" blocks due to excessive newlines.
     blocks = markdown.split("\n\n")
@@ -10,13 +19,6 @@ def markdown_to_blocks(markdown):
     return filtered_blocks
 
 def block_to_block_type(block):
-    block_type_paragraph = "paragraph"
-    block_type_heading = "heading"
-    block_type_code = "code"
-    block_type_quote = "quote"
-    block_type_unordered_list = "unordered_list"
-    block_type_ordered_list = "ordered_list"
-
     # Headings start with 1-6 # characters, followed by a space and then the heading text.
     if (
         block.startswith('#')
