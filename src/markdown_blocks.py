@@ -1,4 +1,4 @@
-from html_node import ParentNode
+from htmlnode import ParentNode
 from inline_markdown import text_to_textnodes
 from textnode import text_node_to_html_node
 
@@ -30,6 +30,8 @@ def markdown_to_html_node(markdown):
         children.append(html_node)
     return ParentNode("div", children, None)
 
+
+
 def block_to_html_node(block):
     block_type = block_to_block_type(block)
     if block_type == block_type_paragraph:
@@ -46,30 +48,47 @@ def block_to_html_node(block):
         return ordered_list_to_html_node(block)
     raise ValueError("Invalid block type")
 
-
 def block_to_block_type(block):
-    # Headings start with 1-6 # characters, followed by a space and then the heading text.
+    lines = block.split("\n")
+
     if (
-        block.startswith('#')
-        or block.startswith('##')
-        or block.startswith('###')
-        or block.startswith('####')
-        or block.startswith('#####')
-        or block.startswith('######')
+        block.startswith("# ")
+        or block.startswith("## ")
+        or block.startswith("### ")
+        or block.startswith("#### ")
+        or block.startswith("##### ")
+        or block.startswith("###### ")
     ):
         return block_type_heading
-    
-    # Code blocks must start with 3 backticks and end with 3 backticks.
-    if block.startswith('```') and block.endswith('```'):
+    if len(lines) > 1 and lines[0].startswith("```") and lines[-1].startswith("```"):
         return block_type_code
-    if block.startswith('>'):
+    if block.startswith(">"):
+        for line in lines:
+            if not line.startswith(">"):
+                return block_type_paragraph
         return block_type_quote
-    if block.startswith('* ') or block.startswith('- '):
+    if block.startswith("* "):
+        for line in lines:
+            if not line.startswith("* "):
+                return block_type_paragraph
         return block_type_unordered_list
-    if block[0].isdigit() and block[1] == '.':
+    if block.startswith("- "):
+        for line in lines:
+            if not line.startswith("- "):
+                return block_type_paragraph
+        return block_type_unordered_list
+    if block.startswith("1. "):
+        i = 1
+        for line in lines:
+            if not line.startswith(f"{i}. "):
+                return block_type_paragraph
+            i += 1
         return block_type_ordered_list
-    else:
-        return block_type_paragraph
+    return block_type_paragraph
+
+
+
+
 
 def text_to_children(text):
     text_nodes = text_to_textnodes(text)
