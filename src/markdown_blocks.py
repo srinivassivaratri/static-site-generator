@@ -154,6 +154,36 @@ def quote_to_html_node(block):
     children = text_to_children(content)
     return ParentNode("blockquote", children)
 
+def extract_title(markdown):
+    # Grab the text of the h1 header from the markdown file (The line that starts with a single #) and return it.
+    lines = markdown.split("\n")
+    for line in lines:
+        if line.startswith("# "):
+            return line[2: ]
+        # If there is no h1 header, raise an exception. All pages need a single h1 header.
+        raise ValueError("No title found")
+
+def generate_page(from_path, template_path, dest_path):
+    print(f"Generating page from {from_path} to {dest_path} using {template_path}")
+    with open(from_path, "r") as f:
+        markdown = f.read()
+    with open(template_path, "r") as f:
+        template = f.read()
+    # Use your markdown_to_html_node function and .to_html() method to convert the markdown file to HTML
+    html_node = markdown_to_html_node(markdown)
+    html = html_node.to_html()
+    title = extract_title(markdown)
+    # Replace the {{ Title }} and {{ Content }} placeholders in the template with the HTML and title you generated.
+    template = template.replace("{{ Title }}", title)
+    template = template.replace("{{ Content }}", html)
+    # Write the new HTML to a file at dest_path. Be sure to create any necessary directories if they don't exist.
+    with open(dest_path, "w") as f:
+        f.write(template)
+    
+
+
+    
+    
 
 
 
