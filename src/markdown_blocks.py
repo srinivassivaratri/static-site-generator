@@ -1,3 +1,6 @@
+# Importing the os module for operating system functions
+import os
+
 from htmlnode import ParentNode
 from inline_markdown import text_to_textnodes
 from textnode import text_node_to_html_node
@@ -179,6 +182,49 @@ def generate_page(from_path, template_path, dest_path):
     # Write the new HTML to a file at dest_path. Be sure to create any necessary directories if they don't exist.
     with open(dest_path, "w") as f:
         f.write(template)
+
+# # Function to generate HTML pages recursively from Markdown files in a directory
+# def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+#     # # Loop through each entry in the specified directory
+#     for entry in os.listdir(dir_path_content): 
+#         # Construct the full path of the current entry
+#         entry_path = os.path.join(dir_path_content, entry)
+#         # Check if the entry is a file with a .md extension
+#         if os.path.isfile(entry_path) and entry.endswith(".md"):
+#             # Construct the output HTML file path
+#             output_file = os.path.join(dest_dir_path, f"{os.path.splitext(entry)[0]}.html")
+#             # Generate an HTML page from the Markdown file using the template
+#             generate_page(entry_path, template_path, output_file) 
+
+
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+    # Ensure the destination directory exists
+    if not os.path.exists(dest_dir_path):
+        os.makedirs(dest_dir_path)
+
+    # Loop through each entry in the specified directory
+    for entry in os.listdir(dir_path_content): 
+        # Construct the full path of the current entry
+        entry_path = os.path.join(dir_path_content, entry)
+
+        # Check if the entry is a directory
+        if os.path.isdir(entry_path):
+            # Create corresponding directory in destination path
+            new_dest_dir = os.path.join(dest_dir_path, entry)
+            os.makedirs(new_dest_dir, exist_ok=True)
+            # Recursively call generate_pages_recursive on the subdirectory
+            generate_pages_recursive(entry_path, template_path, new_dest_dir)
+        elif os.path.isfile(entry_path) and entry.endswith(".md"):
+            # Construct the output HTML file path
+            output_file = os.path.join(dest_dir_path, f"{os.path.splitext(entry)[0]}.html")
+            # Generate an HTML page from the Markdown file using the template
+            generate_page(entry_path, template_path, output_file)
+
+        
+    
+
+
+
     
 
 

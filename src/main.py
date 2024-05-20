@@ -43,7 +43,7 @@
 
 import os
 import shutil
-from markdown_blocks import extract_title, generate_page, markdown_to_html_node
+from markdown_blocks import extract_title, generate_page, generate_pages_recursive, markdown_to_html_node
 from copystatic import copy_files_recursive
 
 def main():
@@ -59,10 +59,11 @@ def main():
     print("Copying static files to public directory...")
     copy_files_recursive(dir_path_static, dir_path_public)
     
-    print("Generating HTML page from Markdown...")
-    md_file = os.path.join(dir_path_content, "index.md")
-    output_file = os.path.join(dir_path_public, "index.html")
-    generate_page(md_file, template_file, output_file)
+    print("Generating HTML page from Markdown recursively...")
+    generate_pages_recursive(dir_path_content, template_file, dir_path_public)
+    # md_file = os.path.join(dir_path_content, "index.md")
+    # output_file = os.path.join(dir_path_public, "index.html")
+    # generate_page(md_file, template_file, output_file)
 
 if __name__ == "__main__":
     main()
