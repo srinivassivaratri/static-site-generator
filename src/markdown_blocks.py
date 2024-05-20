@@ -159,9 +159,9 @@ def extract_title(markdown):
     lines = markdown.split("\n")
     for line in lines:
         if line.startswith("# "):
-            return line[2: ]
-        # If there is no h1 header, raise an exception. All pages need a single h1 header.
-        raise ValueError("No title found")
+            return line[2:]
+    # If there is no h1 header, raise an exception. All pages need a single h1 header.
+    raise ValueError("No title found")
 
 def generate_page(from_path, template_path, dest_path):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
