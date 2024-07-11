@@ -84,6 +84,6 @@ If something's not working:
 
 1. Make sure Python 3 is installed and up-to-date
 2. Check that you've installed all the necessary tools
-3. If you're still stuck, ask for help in our project's chat room
+3. If you're still stuck, make a pull request
 
 Enjoy creating your own websites with our magic website maker!
