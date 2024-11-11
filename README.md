@@ -35,8 +35,8 @@ cd static-site-generator
 - Bold text (**bold**)
 - Italic text (*italic*)
 - Code blocks (```code```)
-- Links ([text](url))
-- Images (![alt](url))
+- Links 
+- Images 
 - Lists (ordered and unordered)
 - Blockquotes (> quote)
 
