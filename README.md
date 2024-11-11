@@ -1,89 +1,50 @@
 # Static Site Generator
 
-## What is this project?
+A lightweight static site generator that converts Markdown files into a fully functioning website, with no web development knowledge required.
 
-This project is a tool that turns simple text files into a fully functioning website. It's like having a magic wand that transforms your writing into beautiful web pages!
+## Why?
 
-## Why did we make this?
+I needed to create multiple simple websites but WordPress and other CMS platforms were overkill, required databases, and constant maintenance. I built this static site generator that takes Markdown files and generates clean HTML - now I can create and deploy websites in minutes with just text files.
 
-We wanted to:
+## Quick Start
 
-1. Learn how to create websites from scratch
-2. Make it easy for anyone to publish their own website without knowing complex web coding
-3. Understand how popular website builders work behind the scenes
+1. Install dependencies:
+```bash
+python -m pip install --upgrade pip
+```
 
-## What you need to run this
+2. Clone and run:
+```bash
+git clone https://github.com/yourusername/static-site-generator
+cd static-site-generator
+./main.sh
+```
 
-- A program to write code (we like VS Code, but use what you're comfortable with)
-- Python 3 installed on your computer
-- The Boot.dev CLI tool (for running and submitting tests)
+3. Your site will be generated in the `public` folder
 
-## What we've done
+## Usage
 
-### 1. Set up the basics
+1. Write your content in Markdown files in the `content` directory
+2. Add any images/CSS/JS files to the `static` directory
+3. Run `./main.sh` to generate your site
+4. Deploy the `public` directory to any web host
 
-We created a simple way to start our project and run tests.
+### Supported Markdown Features
 
-Why? This makes it easier to develop and check our work as we go along.
+- Headers (# h1, ## h2, etc)
+- Bold text (**bold**)
+- Italic text (*italic*)
+- Code blocks (```code```)
+- Links ([text](url))
+- Images (![alt](url))
+- Lists (ordered and unordered)
+- Blockquotes (> quote)
 
-### 2. Created the building blocks
+## Contributing
 
-We made special "nodes" that represent different parts of a web page (like paragraphs, headings, and links).
-
-Why? These building blocks help us turn simple text into proper web page code.
-
-### 3. Markdown to HTML conversion
-
-We wrote code that can read simple text (called Markdown) and turn it into web page code (called HTML).
-
-Why? This lets people write content easily without knowing complex web coding.
-
-### 4. Splitting content into blocks
-
-We created a way to separate different parts of the content (like paragraphs, lists, and code snippets).
-
-Why? This helps us treat different types of content in the right way when making the web page.
-
-### 5. Generating the website
-
-We put all the pieces together to create a complete website from the simple text files.
-
-Why? This is the main goal of our project - turning simple writing into a full website!
-
-### 6. Copying static files
-
-We made sure that things like images and style files are correctly included in the final website.
-
-Why? A good website needs more than just text - it needs images and nice styling too!
-
-### 7. Creating multiple pages
-
-We set up the tool to create multiple web pages that link to each other.
-
-Why? Most websites have more than one page, so our tool needed to handle this too.
-
-## How to use it
-
-1. Make sure Python 3 and the Boot.dev CLI are installed on your computer
-2. Download or copy our code files
-3. Write your content in simple text files (using Markdown format)
-4. Run the `main.sh` script
-5. Your new website will be created in the `public` folder!
-
-## Testing
-
-Run `./test.sh` to check if everything is working correctly.
-
-## Want to help?
-
-Feel free to suggest improvements or add new features. Just let us know what you want to change first!
-
-## Having problems?
-
-If something's not working:
-
-1. Make sure Python 3 is installed and up-to-date
-2. Check that you've installed all the necessary tools
-3. If you're still stuck, make a pull request
-
-Enjoy creating your own websites with our magic website maker!
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Run tests (`./test.sh`)
+4. Commit your changes (`git commit -m 'Add amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request
